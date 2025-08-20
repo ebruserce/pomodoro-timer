@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import './App.css'
+import TimerControls from './components/TimerControls'
 import TimerDisplay from './components/TimerDisplay'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [time, setTime] = useState(25 * 60)
 
   return (
     <>
-      <TimerDisplay></TimerDisplay>
+      <TimerControls setTime={setTime}></TimerControls>
+      <TimerDisplay time={time}></TimerDisplay>
     </>
   )
 }

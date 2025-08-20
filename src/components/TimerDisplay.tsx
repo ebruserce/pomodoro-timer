@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 
-export default function TimerDisplay() {
-    const [timeLeft, setTimeLeft] = useState(25 * 60) // 25 minutes * 60 seconds = 1500 seconds
+type TimeDisplayProps = {
+    time: number
+}
+
+export default function TimerDisplay({ time }: TimeDisplayProps) {
+    const [timeLeft, setTimeLeft] = useState(time) // 25 minutes * 60 seconds = 1500 seconds
     const [isRunning, setIsRunning] = useState(false) // state to check whether the timer is running
 
     // useEffect hook performs "side effects"
@@ -20,6 +24,20 @@ export default function TimerDisplay() {
         return () => clearInterval(interval)
     }, [isRunning, timeLeft])
 
+    useEffect(() => {
+        setIsRunning(false)
+        setTimeLeft(time)
+    }, [time])
+
+    const handleStartPause = () => {
+        setIsRunning((prev) => !prev);
+    }
+
+    const handleReset = () => {
+        setIsRunning(false)
+        setTimeLeft(25 * 60)
+    }
+
     return (
         <div>
             <h3>
@@ -32,16 +50,10 @@ export default function TimerDisplay() {
                 :
                 {(timeLeft % 60).toString().padStart(2, "0")}
             </h1>
-            <button onClick={() => setIsRunning(true)}>
-                Start
+            <button onClick={handleStartPause}>
+                {isRunning ? "Pause" : "Start"}
             </button>
-            <button onClick={() => setIsRunning(false)}>
-                Pause
-            </button>
-            <button onClick={() => {
-                setIsRunning(false)
-                setTimeLeft(25 * 60)
-                }}>
+            <button onClick={handleReset}>
                 Reset
             </button>
         </div>
