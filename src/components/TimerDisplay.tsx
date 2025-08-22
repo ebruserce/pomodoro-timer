@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 
 type TimeDisplayProps = {
-    time: number
+    workTime: number
+    breakTime: number
 }
 
-export default function TimerDisplay({ time }: TimeDisplayProps) {
-    const [timeLeft, setTimeLeft] = useState(time) // 25 minutes * 60 seconds = 1500 seconds
+type Mode = "work" | "break"
+
+export default function TimerDisplay({ workTime, breakTime }: TimeDisplayProps) {
+    const [timeLeft, setTimeLeft] = useState(workTime) // 25 minutes * 60 seconds = 1500 seconds
     const [isRunning, setIsRunning] = useState(false) // state to check whether the timer is running
+    const [mode, setMode] = useState<Mode>("work")
 
     // useEffect hook performs "side effects"
     // it is called whenever one of its dependencies (isRunning, timeLeft) change
@@ -19,15 +23,20 @@ export default function TimerDisplay({ time }: TimeDisplayProps) {
             interval = window.setInterval(() => {
                 setTimeLeft((prev) => prev - 1)
             }, 1000);
+        } else if (isRunning && timeLeft === 0) {
+            // Switch modes when timer finishes
+            setIsRunning(false)
+            setMode((prev) => (prev === "work" ? "break" : "work"))
         }
         // cleanup function ensures that only one interval runs at once (otherwise, the timer would tick down too fast)
         return () => clearInterval(interval)
     }, [isRunning, timeLeft])
 
+    // Sync with prop when switching modes, update timers with user input
     useEffect(() => {
         setIsRunning(false)
-        setTimeLeft(time)
-    }, [time])
+        setTimeLeft(mode === "work" ? workTime : breakTime)
+    }, [mode, workTime, breakTime])
 
     const handleStartPause = () => {
         setIsRunning((prev) => !prev);
@@ -35,13 +44,13 @@ export default function TimerDisplay({ time }: TimeDisplayProps) {
 
     const handleReset = () => {
         setIsRunning(false)
-        setTimeLeft(25 * 60)
+        setTimeLeft(mode === "work" ? workTime : breakTime)
     }
 
     return (
         <div>
             <h3>
-                Pomodoro Timer
+                {mode === "work" ? "Work Time" : "Break Time"}
             </h3>
             <h1>
                 {Math.floor(timeLeft / 60)
