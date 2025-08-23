@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 type TimeDisplayProps = {
     workTime: number
     breakTime: number
+    onComplete: () => void
 }
 
 type Mode = "work" | "break"
 
-export default function TimerDisplay({ workTime, breakTime }: TimeDisplayProps) {
+export default function TimerDisplay({ workTime, breakTime, onComplete }: TimeDisplayProps) {
     const [timeLeft, setTimeLeft] = useState(workTime) // 25 minutes * 60 seconds = 1500 seconds
     const [isRunning, setIsRunning] = useState(false) // state to check whether the timer is running
     const [mode, setMode] = useState<Mode>("work")
@@ -24,6 +25,9 @@ export default function TimerDisplay({ workTime, breakTime }: TimeDisplayProps) 
                 setTimeLeft((prev) => prev - 1)
             }, 1000);
         } else if (isRunning && timeLeft === 0) {
+            if (mode === "work") {
+                onComplete()
+            }
             // Switch modes when timer finishes
             setIsRunning(false)
             setMode((prev) => (prev === "work" ? "break" : "work"))
@@ -47,6 +51,12 @@ export default function TimerDisplay({ workTime, breakTime }: TimeDisplayProps) 
         setTimeLeft(mode === "work" ? workTime : breakTime)
     }
 
+    const handleSkipBreak = () => {
+        setIsRunning(false)
+        setMode("work")
+        setTimeLeft(workTime)
+    }
+
     return (
         <div>
             <h3>
@@ -65,6 +75,7 @@ export default function TimerDisplay({ workTime, breakTime }: TimeDisplayProps) 
             <button onClick={handleReset}>
                 Reset
             </button>
+            {mode === "break" && <button onClick={handleSkipBreak}>Skip Break?</button>}
         </div>
     )
 }
