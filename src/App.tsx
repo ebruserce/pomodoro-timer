@@ -5,14 +5,15 @@ import TimerDisplay from './components/TimerDisplay'
 import ProgressIndicator from './components/ProgressIndicator'
 import SettingsIcon from './assets/Pomodoro_Setting_Icon.svg'
 import CompletionPage from './components/CompletionPage'
+import { DEFAULT_BREAK_MINUTES, DEFAULT_GOAL, DEFAULT_WORK_MINUTES } from './constants'
 
 function App() {
-  const [workTime, setWorkTime] = useState(25 * 60)
-  const [breakTime, setBreakTime] = useState(5 * 60)
+  const [workTime, setWorkTime] = useState(DEFAULT_WORK_MINUTES * 60)
+  const [breakTime, setBreakTime] = useState(DEFAULT_BREAK_MINUTES * 60)
   const [showControls, setShowControls] = useState(false)
 
   const [completed, setCompleted] = useState(0)
-  const [goal, setGoal] = useState(4) // TODO: implement user goal input
+  const [goal, setGoal] = useState(DEFAULT_GOAL) // TODO: implement user goal input
 
   const toggleControls = () => {
     setShowControls((prev) => !prev)
@@ -40,7 +41,7 @@ function App() {
               style={{ width: "128px", height: "128px"}}
             />
           </button>
-          {showControls && <TimerControls setWorkTime={setWorkTime} setBreakTime={setBreakTime}></TimerControls>}
+          {showControls && <TimerControls setWorkTime={setWorkTime} setBreakTime={setBreakTime} setGoal={setGoal}></TimerControls>}
           <ProgressIndicator completed={completed} goal={goal} />
           <TimerDisplay workTime={workTime} breakTime={breakTime} onComplete={handlePomodoroComplete} />
         </>
