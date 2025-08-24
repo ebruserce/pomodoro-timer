@@ -51,10 +51,24 @@ export default function TimerDisplay({ workTime, breakTime, onComplete }: TimeDi
         setTimeLeft(mode === "work" ? workTime : breakTime)
     }
 
-    const handleSkipBreak = () => {
+    const handleSkip = () => {
         setIsRunning(false)
-        setMode("work")
-        setTimeLeft(workTime)
+        if (mode === "work") {
+            onComplete()
+        }
+        switchSessions()
+    }
+
+    const switchSessions = () => {
+        setIsRunning(false)
+        if (mode === "work") {
+            setMode("break")
+            setTimeLeft(breakTime)
+        } else {
+            setMode("work")
+            setTimeLeft(workTime)
+        }
+        
     }
 
     return (
@@ -69,13 +83,11 @@ export default function TimerDisplay({ workTime, breakTime, onComplete }: TimeDi
                 :
                 {(timeLeft % 60).toString().padStart(2, "0")}
             </h1>
+            { isRunning && <button onClick={handleReset}>Reset</button> }
             <button onClick={handleStartPause}>
                 {isRunning ? "Pause" : "Start"}
             </button>
-            <button onClick={handleReset}>
-                Reset
-            </button>
-            {mode === "break" && <button onClick={handleSkipBreak}>Skip Break?</button>}
+            { isRunning && <button onClick={handleSkip}>Skip</button> }
         </div>
     )
 }
