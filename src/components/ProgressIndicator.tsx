@@ -1,5 +1,5 @@
-import Seed from '../assets/Seed1.svg'
-import Tomato from '../assets/Pom1.svg'
+import Seed from '../assets/Seed.png'
+import Tomato from '../assets/Tomato.png'
 
 type PomodoroProgressProps = {
     completed: number
@@ -8,7 +8,7 @@ type PomodoroProgressProps = {
 
 export default function ProgressIndicator({ completed, goal }: PomodoroProgressProps) {
     return (
-        <div style={{ display: "flex", gap: "2px", justifyContent: "center", marginBottom: "4px" }}>
+        <div style={{ display: "flex", gap: "10px", justifyContent: "center", marginBottom: "4px" }}>
         {Array.from({ length: goal }).map((_, index) => {
             const isCompleted = index < completed
             return (
@@ -16,7 +16,7 @@ export default function ProgressIndicator({ completed, goal }: PomodoroProgressP
                 key={index}
                 src={isCompleted ? Tomato : Seed}
                 alt={isCompleted ? "Tomato" : "Seed"}
-                style={{ width: "64px", height: "64px" }}
+                style={{ width: "48px", height: "64px" }}
             />
             )
         })}

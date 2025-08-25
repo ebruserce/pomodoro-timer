@@ -3,9 +3,10 @@ import './App.css'
 import TimerControls from './components/TimerControls'
 import TimerDisplay from './components/TimerDisplay'
 import ProgressIndicator from './components/ProgressIndicator'
-import SettingsIcon from './assets/Pomodoro_Setting_Icon.svg'
+import SettingsIcon from './assets/Pomodoro_Setting_Icon.png'
 import CompletionPage from './components/CompletionPage'
 import { DEFAULT_BREAK_MINUTES, DEFAULT_GOAL, DEFAULT_WORK_MINUTES } from './constants'
+import PlantGrowth from './components/PlantGrowth'
 
 function App() {
   const [workTime, setWorkTime] = useState(DEFAULT_WORK_MINUTES * 60)
@@ -27,25 +28,24 @@ function App() {
     setCompleted(0)
   }
 
+  if (goal === completed) {
+    return <CompletionPage onReset={handleReset} />
+  }
+
   return (
     <>
-      {goal === completed ? (
-        <CompletionPage onReset={handleReset} />
-      ) : (
-        <>
-          {/* Settings toggle button */}
-          <button onClick={toggleControls} style={{ background: "none", border: "none", cursor: "pointer "}}>
-            <img
-              src={SettingsIcon}
-              alt="Settings"
-              style={{ width: "128px", height: "128px"}}
-            />
-          </button>
-          {showControls && <TimerControls setWorkTime={setWorkTime} setBreakTime={setBreakTime} setGoal={setGoal}></TimerControls>}
-          <ProgressIndicator completed={completed} goal={goal} />
-          <TimerDisplay workTime={workTime} breakTime={breakTime} onComplete={handlePomodoroComplete} />
-        </>
-      )}
+      {/* Settings toggle button */}
+      <button onClick={toggleControls} style={{ background: "none", border: "none", cursor: "pointer "}}>
+        <img
+          src={SettingsIcon}
+          alt="Settings"
+          style={{ width: "128px", height: "128px"}}
+        />
+      </button>
+      {showControls && <TimerControls setWorkTime={setWorkTime} setBreakTime={setBreakTime} setGoal={setGoal}></TimerControls>}
+      <ProgressIndicator completed={completed} goal={goal} />
+      <TimerDisplay workTime={workTime} breakTime={breakTime} onComplete={handlePomodoroComplete} />
+      <PlantGrowth></PlantGrowth>
     </>
   )
 }
