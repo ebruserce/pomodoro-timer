@@ -35,14 +35,20 @@ function App() {
   return (
     <>
       {/* Settings toggle button */}
-      <button onClick={toggleControls} style={{ background: "none", border: "none", cursor: "pointer "}}>
-        <img
-          src={SettingsIcon}
-          alt="Settings"
-          style={{ width: "128px", height: "128px"}}
-        />
-      </button>
-      {showControls && <TimerControls setWorkTime={setWorkTime} setBreakTime={setBreakTime} setGoal={setGoal}></TimerControls>}
+      <div>
+        <button 
+          className="absolute top-4 left-4"
+          onClick={toggleControls} 
+          style={{ background: "none", border: "none", cursor: "pointer "}}
+        >
+          <img
+            src={SettingsIcon}
+            alt="Settings"
+            style={{ width: "128px", height: "128px"}}
+          />
+        </button>
+        {showControls && <TimerControls setWorkTime={setWorkTime} setBreakTime={setBreakTime} setGoal={setGoal}></TimerControls>}
+      </div>
       <ProgressIndicator completed={completed} goal={goal} />
       <TimerDisplay workTime={workTime} breakTime={breakTime} onComplete={handlePomodoroComplete} />
       <PlantGrowth></PlantGrowth>
