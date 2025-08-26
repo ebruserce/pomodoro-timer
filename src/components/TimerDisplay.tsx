@@ -84,7 +84,7 @@ export default function TimerDisplay({ workTime, breakTime, onComplete }: TimeDi
                 {(timeLeft % 60).toString().padStart(2, "0")}
             </h1>
             { isRunning && <button onClick={handleReset}>Reset</button> }
-            <button onClick={handleStartPause}>
+            <button className="btn_ebru" onClick={handleStartPause}>
                 {isRunning ? "Pause" : "Start"}
             </button>
             { isRunning && <button onClick={handleSkip}>Skip</button> }
