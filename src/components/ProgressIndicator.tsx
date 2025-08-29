@@ -16,7 +16,7 @@ export default function ProgressIndicator({ completed, goal }: PomodoroProgressP
                 key={index}
                 src={isCompleted ? Tomato : Seed}
                 alt={isCompleted ? "Tomato" : "Seed"}
-                style={{ width: "48px", height: "64px" }}
+                style={{ width: "36px", height: "48px" }}
             />
             )
         })}

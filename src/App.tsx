@@ -33,26 +33,29 @@ function App() {
   }
 
   return (
-    <>
+    <div className='bg-sage-300 min-h-screen flex justify-center items-start pt-30'>
       {/* Settings toggle button */}
-      <div>
+      <div className='absolute top-4 left-4'>
         <button 
-          className="absolute top-4 left-4"
           onClick={toggleControls} 
           style={{ background: "none", border: "none", cursor: "pointer "}}
         >
           <img
             src={SettingsIcon}
             alt="Settings"
-            style={{ width: "128px", height: "128px"}}
+            className='w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28'
           />
         </button>
         {showControls && <TimerControls setWorkTime={setWorkTime} setBreakTime={setBreakTime} setGoal={setGoal}></TimerControls>}
       </div>
-      <ProgressIndicator completed={completed} goal={goal} />
-      <TimerDisplay workTime={workTime} breakTime={breakTime} onComplete={handlePomodoroComplete} />
+      <div className='bg-sage-200 rounded-[40px] w-[80%] max-w-[657px] aspect-[657/486] flex items-center justify-center shadow-md'>
+        <div className='bg-sage-100 rounded-[40px] w-[80%] max-w-[569px] aspect-[569/425] flex flex-col items-center justify-center shadow-md'>
+          <ProgressIndicator completed={completed} goal={goal} />
+          <TimerDisplay workTime={workTime} breakTime={breakTime} onComplete={handlePomodoroComplete} />
+        </div>
+      </div>
       <PlantGrowth></PlantGrowth>
-    </>
+    </div>
   )
 }
 
