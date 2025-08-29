@@ -41,6 +41,9 @@ Built using React + Typescript + Vite, and TailwindCSS
 - Allow users to add friends, social media element
 - Allow more customization for the user (themes, colors, sounds, short/long breaks)
 
+### Current Figma Design:
+![Figma Pomogrowo](./src/Figma_Design.png)
+
 ### For Developers:
 
 #### Getting Started
