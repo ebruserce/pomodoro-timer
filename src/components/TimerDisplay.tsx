@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Skip from "../assets/Skip_Button.svg"
+import Skip from "../assets/Skip.svg"
 
 type TimeDisplayProps = {
     workTime: number
@@ -104,12 +104,13 @@ export default function TimerDisplay({ workTime, breakTime, onComplete }: TimeDi
                         </h1> 
                     )}
                 </button>
-                { isRunning && <button className="bg-green-fill rounded-[43px] w-12 h-8 sm:w-12 sm:h-8 md:w-16 md:h-12 lg:w-16 lg:h-12 shadow-md"
+                {/*isRunning && <button onClick={handleSkip}><img src={Skip}/></button>*/}
+                {isRunning && <button className="bg-green-fill rounded-[43px] w-12 h-8 sm:w-12 sm:h-8 md:w-16 md:h-12 lg:w-16 lg:h-12 shadow-md"
                                 onClick={handleSkip}>
                                     <h1 className="text-almost-white font-sofia text-md md:text-xl lg:text-xl">
                                         Skip
                                     </h1> 
-                                </button> }
+                                </button>}
             </div>
         </div>
     )

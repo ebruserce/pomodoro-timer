@@ -1,5 +1,7 @@
 import Seed from '../assets/Seed.png'
 import Tomato from '../assets/Tomato.png'
+import Green_Tomato from '../assets/Green_Tomato.svg'
+import Red_Tomato from '../assets/Red_Tomato.svg'
 
 type PomodoroProgressProps = {
     completed: number
@@ -14,8 +16,8 @@ export default function ProgressIndicator({ completed, goal }: PomodoroProgressP
             return (
             <img
                 key={index}
-                src={isCompleted ? Tomato : Seed}
-                alt={isCompleted ? "Tomato" : "Seed"}
+                src={isCompleted ? Red_Tomato : Green_Tomato}
+                alt={isCompleted ? "Red_Tomato" : "Green_Tomato"}
                 style={{ width: "36px", height: "48px" }}
             />
             )
