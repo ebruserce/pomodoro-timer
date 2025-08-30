@@ -81,25 +81,25 @@ export default function TimerDisplay({ workTime, breakTime, onComplete }: TimeDi
 
     return (
         <div>
-            <h1 className="font-staatliches text-9xl text-almost-white flex justify-center">
+            <h1 className="font-staatliches text-9xl text-white flex justify-center">
                 {formatTime(timeLeft)}
             </h1>
             <div className="flex justify-center gap-4 mt-4">
                 { isRunning && <button 
                                 className="bg-green-fill rounded-[43px] w-12 h-8 sm:w-12 sm:h-8 md:w-16 md:h-12 lg:w-16 lg:h-12 shadow-md"
                                 onClick={handleReset}>
-                                    <h1 className="text-almost-white font-sofia text-md md:text-xl lg:text-xl">
+                                    <h1 className="text-white font-sofia text-md md:text-xl lg:text-xl">
                                         Reset
                                     </h1>                                  
                                 </button> }
                 <button className="bg-green-fill rounded-[43px] w-16 h-8 sm:w-16 sm:h-8 md:w-20 md:h-12 lg:w-20 lg:h-12 shadow-md" 
                     onClick={handleStartPause}>
                     {isRunning ? (
-                        <h1 className="text-almost-white font-sofia text-md md:text-xl lg:text-xl">
+                        <h1 className="text-white font-sofia text-md md:text-xl lg:text-xl">
                             Pause
                         </h1>  
                     ): (
-                        <h1 className="text-almost-white font-sofia text-md md:text-xl lg:text-xl">
+                        <h1 className="text-white font-sofia text-md md:text-xl lg:text-xl">
                             Start
                         </h1> 
                     )}
@@ -107,7 +107,7 @@ export default function TimerDisplay({ workTime, breakTime, onComplete }: TimeDi
                 {/*isRunning && <button onClick={handleSkip}><img src={Skip}/></button>*/}
                 {isRunning && <button className="bg-green-fill rounded-[43px] w-12 h-8 sm:w-12 sm:h-8 md:w-16 md:h-12 lg:w-16 lg:h-12 shadow-md"
                                 onClick={handleSkip}>
-                                    <h1 className="text-almost-white font-sofia text-md md:text-xl lg:text-xl">
+                                    <h1 className="text-white font-sofia text-md md:text-xl lg:text-xl">
                                         Skip
                                     </h1> 
                                 </button>}
