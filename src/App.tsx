@@ -5,6 +5,7 @@ import TimerDisplay from './components/TimerDisplay'
 import ProgressIndicator from './components/ProgressIndicator'
 import SettingsIcon from './assets/Pomodoro_Setting_Icon.png'
 import CompletionPage from './components/CompletionPage'
+import HeaderBar from './components/HeaderBar'
 import { DEFAULT_BREAK_MINUTES, DEFAULT_GOAL, DEFAULT_WORK_MINUTES } from './constants'
 import PlantGrowth from './components/PlantGrowth'
 
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <div className='bg-sage-300 min-h-screen flex justify-center items-start pt-30'>
+      <HeaderBar></HeaderBar>
       {/* Settings toggle button */}
       <div className='absolute top-4 left-4'>
         <button 
