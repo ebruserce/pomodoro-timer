@@ -1,5 +1,5 @@
-import Seed from '../assets/Seed.png'
-import Tomato from '../assets/Tomato.png'
+import _Seed from '../assets/Seed.png'
+import _Tomato from '../assets/Tomato.png'
 import Green_Tomato from '../assets/Green_Tomato.svg'
 import Red_Tomato from '../assets/Red_Tomato.svg'
 

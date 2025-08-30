@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Skip from "../assets/Skip.svg"
+import _Skip from "../assets/Skip.svg"
 
 type TimeDisplayProps = {
     workTime: number
