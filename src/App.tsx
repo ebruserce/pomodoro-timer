@@ -7,6 +7,7 @@ import CompletionPage from './components/CompletionPage'
 import HeaderBar from './components/HeaderBar'
 import { DEFAULT_BREAK_MINUTES, DEFAULT_GOAL, DEFAULT_WORK_MINUTES } from './constants'
 import PlantGrowth from './components/PlantGrowth'
+import TodoistTasks from './components/TodoistTasks'
 
 function App() {
   const [workTime, setWorkTime] = useState(DEFAULT_WORK_MINUTES * 60)
@@ -52,6 +53,7 @@ function App() {
           </div>
       </div>
       <PlantGrowth></PlantGrowth>
+      <TodoistTasks></TodoistTasks>
     </div>
   )
 }

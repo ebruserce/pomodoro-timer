@@ -6,13 +6,17 @@ type HeaderBarProps = {
 }
 
 export default function HeaderBar({ onSettingsClick }: HeaderBarProps) {
+    const handleTodoistClick = () => {
+        window.location.href = 'http://localhost:4000/auth/login'; // Redirect to the backend server for OAuth
+    }
+
     return (
         <div className="w-full p-4 flex items-center justify-center relative border-b-4 border-sage-200">
             <div className="text-sage-100 text-center text-8xl font-staatliches">
                 POMOGROWO
             </div>
             <div className="absolute right-4 flex gap-4">
-                <button>
+                <button onClick={handleTodoistClick}>
                     <img 
                         src={_TodoistButton} 
                         alt="Todoist Button" 
