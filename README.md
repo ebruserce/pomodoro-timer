@@ -19,12 +19,17 @@ Built using React + Typescript + Vite, and TailwindCSS
 - Completion Page
   - congratulates user for meeting their goal!
   - option to restart session
+- Todoist API integration
+  - user can log into their Todoist account and see their todo list items
+  - user can check off todo list items (closing a task in Pomogrowo also closes it in Todoist)
 
 ### Current Goals:
 - Complete CSS Formatting
-- Todoist API integration
-  - user can log into their Todoist account and see their todo list
+- Indication of break time vs work time
+- Todoist API integration +
   - stats about how many/which tasks were completed are displayed
+  - user can pick a task that they are actively working on; this will insert a comment in their Todoist task that states when they started working on it.
+  - Pomogrowo tracks how long the user spends on a task, and displays this stat as part of the completion page
 - Tomato growth animation
   - As the user works towards their goal number of pomodoros, a tomato plant on screen grows until reaching full growth at the end! Meant to be a fun element of motivation for users :D
 - Saving state
