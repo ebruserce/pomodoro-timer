@@ -3,9 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser'); // for storing token in cookie
 
-// If Node < 18, uncomment the next line
-// const fetch = require('node-fetch');
-
 const app = express();
 
 app.use(cors({
@@ -19,10 +16,9 @@ const PORT = process.env.PORT || 4000;
 // --- Step 1: Redirect user to Todoist OAuth ---
 app.get('/auth/login', (req, res) => {
     const state = Math.random().toString(36).substring(2);
-    console.log('Generated OAuth state:', state); // useful for debugging
-
+    //console.log('Generated OAuth state:', state); 
     const scope = 'task:add,data:read';
-    const authUrl = `https://todoist.com/oauth/authorize?client_id=${process.env.CLIENT_ID}&scope=${scope}&state=${state}&redirect_uri=${process.env.REDIRECT_URI}&prompt=consent`;
+    const authUrl = `https://todoist.com/oauth/authorize?client_id=${process.env.CLIENT_ID}&scope=${scope}&state=${state}&redirect_uri=${process.env.REDIRECT_URI}`;
 
     res.redirect(authUrl);
 });
@@ -35,8 +31,8 @@ app.get('/auth/callback', async (req, res) => {
         return res.status(400).send('Missing code or state');
     }
 
-    console.log('State returned from Todoist:', state);
-    console.log('Authorization code:', code);
+    //console.log('State returned from Todoist:', state);
+    //console.log('Authorization code:', code);
 
     try {
         const tokenResponse = await fetch('https://todoist.com/oauth/access_token', {
@@ -53,7 +49,7 @@ app.get('/auth/callback', async (req, res) => {
         const data = await tokenResponse.json();
         const accessToken = data.access_token;
 
-        console.log('Access token:', accessToken);
+        //console.log('Access token:', accessToken);
 
         // Store the access token in a cookie for frontend use
         res.cookie('todoist_token', accessToken, {
@@ -88,20 +84,4 @@ app.get('/tasks', async (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-});
-
-app.get('/tasks', async (req, res) => {
-    const token = req.cookies.todoist_token;
-    if (!token) return res.status(401).send('Not authenticated');
-
-    try {
-        const response = await fetch('https://api.todoist.com/rest/v2/tasks', {
-            headers: { Authorization: `Bearer ${token}` }
-        });
-        const tasks = await response.json();
-        res.json(tasks);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Failed to fetch tasks');
-    }
 });
