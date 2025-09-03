@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 4000;
 app.get('/auth/login', (req, res) => {
     const state = Math.random().toString(36).substring(2);
     //console.log('Generated OAuth state:', state); 
-    const scope = 'task:add,data:read';
+    const scope = 'data:read_write';
     const authUrl = `https://todoist.com/oauth/authorize?client_id=${process.env.CLIENT_ID}&scope=${scope}&state=${state}&redirect_uri=${process.env.REDIRECT_URI}`;
 
     res.redirect(authUrl);
@@ -65,7 +65,7 @@ app.get('/auth/callback', async (req, res) => {
     }
 });
 
-// --- Optional: test route to get tasks from Todoist ---
+// Route to get tasks from Todoist
 app.get('/tasks', async (req, res) => {
     const token = req.cookies.todoist_token;
     if (!token) return res.status(401).send('Not authenticated');
@@ -81,6 +81,38 @@ app.get('/tasks', async (req, res) => {
         res.status(500).send('Failed to fetch tasks');
     }
 });
+
+// Route to close a task from Todoist
+app.post('/tasks/:task_id/close', async (req, res) => {
+    const token = req.cookies.todoist_token; // ensure this is being set correctly
+    if (!token) {
+        return res.status(401).send('Not authenticated with Todoist');
+    }
+
+    const { task_id } = req.params;
+
+    try {
+        const response = await fetch(`https://api.todoist.com/rest/v2/tasks/${task_id}/close`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text(); // don't parse as JSON if error
+            console.error("Todoist API error:", errorText);
+            return res.status(response.status).send(errorText);
+        }
+
+        return res.json({ success: true, task_id });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send('Failed to close task');
+    }
+});
+
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
