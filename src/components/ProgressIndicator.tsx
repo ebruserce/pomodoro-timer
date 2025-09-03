@@ -10,15 +10,14 @@ type PomodoroProgressProps = {
 
 export default function ProgressIndicator({ completed, goal }: PomodoroProgressProps) {
     return (
-        <div style={{ display: "flex", gap: "10px", justifyContent: "center", marginBottom: "4px" }}>
+        <div className='flex justify-center mb-2'>
         {Array.from({ length: goal }).map((_, index) => {
             const isCompleted = index < completed
             return (
-            <img
+            <img className='w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12'
                 key={index}
                 src={isCompleted ? Red_Tomato : Green_Tomato}
                 alt={isCompleted ? "Red_Tomato" : "Green_Tomato"}
-                style={{ width: "36px", height: "48px" }}
             />
             )
         })}

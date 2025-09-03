@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import _Skip from "../assets/Skip.svg"
+import Skip from "../assets/Skip_Button.svg"
+import Reset from "../assets/Restart_Button.svg"
 
 type TimeDisplayProps = {
     workTime: number
@@ -81,36 +82,24 @@ export default function TimerDisplay({ workTime, breakTime, onComplete }: TimeDi
 
     return (
         <div>
-            <h1 className="font-staatliches text-9xl text-white flex justify-center">
+            <h1 className="font-staatliches text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-white flex justify-center">
                 {formatTime(timeLeft)}
             </h1>
-            <div className="flex justify-center gap-4 mt-4">
-                { isRunning && <button 
-                                className="bg-green-fill rounded-[43px] w-12 h-8 sm:w-12 sm:h-8 md:w-16 md:h-12 lg:w-16 lg:h-12 shadow-md"
-                                onClick={handleReset}>
-                                    <h1 className="text-white font-sofia text-md md:text-xl lg:text-xl">
-                                        Reset
-                                    </h1>                                  
-                                </button> }
-                <button className="bg-green-fill rounded-[43px] w-16 h-8 sm:w-16 sm:h-8 md:w-20 md:h-12 lg:w-20 lg:h-12 shadow-md" 
+            <div className="flex justify-center gap-3 mt-2">
+                {isRunning && <button onClick={handleReset}><img className="h-7 sm:h-9 md:h-11 lg:h-13" src={Reset}/></button>}
+                <button className="bg-green-fill rounded-[43px] w-12 h-6 sm:w-16 sm:h-8 md:w-20 md:h-10 lg:w-20 lg:h-12 shadow-md" 
                     onClick={handleStartPause}>
                     {isRunning ? (
-                        <h1 className="text-white font-sofia text-md md:text-xl lg:text-xl">
+                        <h1 className="text-white font-sofia text-sm sm:text-md md:text-xl lg:text-xl xl:text-2xl">
                             Pause
                         </h1>  
                     ): (
-                        <h1 className="text-white font-sofia text-md md:text-xl lg:text-xl">
+                        <h1 className="text-white font-sofia text-sm sm:text-md md:text-xl lg:text-xl xl:text-2xl">
                             Start
                         </h1> 
                     )}
                 </button>
-                {/*isRunning && <button onClick={handleSkip}><img src={Skip}/></button>*/}
-                {isRunning && <button className="bg-green-fill rounded-[43px] w-12 h-8 sm:w-12 sm:h-8 md:w-16 md:h-12 lg:w-16 lg:h-12 shadow-md"
-                                onClick={handleSkip}>
-                                    <h1 className="text-white font-sofia text-md md:text-xl lg:text-xl">
-                                        Skip
-                                    </h1> 
-                                </button>}
+                {isRunning && <button onClick={handleSkip}><img className="h-7 sm:h-9 md:h-11 lg:h-13" src={Skip}/></button>}
             </div>
         </div>
     )

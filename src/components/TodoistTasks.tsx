@@ -27,13 +27,17 @@ export default function TodoistTasks() {
     if (loading) return <div>Loading tasks...</div>;
 
     return (
-        <div>
-            <h2>Your Todoist Inbox Tasks</h2>
-            <ul>
-                {tasks.map(task => (
-                    <li key={task.id}>{task.content}</li>
-                ))}
-            </ul>
+        <div className="bg-sage-200 rounded-4xl flex flex-col shadow-md relative">
+            <div className="text-white font-sofia text-xl md:text-2xl lg:text-2xl p-4 flex justify-center">
+                Your Todoist Inbox Tasks
+            </div>
+            <div className="flex justify-between items-center p-4">
+                <ul>
+                    {tasks.map(task => (
+                        <li key={task.id}>{task.content}</li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 }

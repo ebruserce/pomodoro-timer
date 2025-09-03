@@ -86,8 +86,8 @@ export default function TimerControls({ setWorkTime, setBreakTime, setGoal }: Ti
                 {workDuration()}
             </p>
             <div className="flex justify-center p-4">
-                <button onClick={handleSaveInput} className="bg-green-fill rounded-[43px] w-20 h-8 sm:w-20 sm:h-8 md:w-28 md:h-12 lg:w-28 lg:h-12 shadow-md flex justify-center items-center text-white font-sofia text-md md:text-l lg:text-l">
-                    Save Changes
+                <button onClick={handleSaveInput} className="bg-green-fill rounded-[43px] w-16 h-8 md:w-20 md:h-12 lg:w-20 lg:h-12 shadow-md flex justify-center items-center text-white font-sofia text-md md:text-l lg:text-l">
+                    Save
                 </button>
             </div>
         </div>

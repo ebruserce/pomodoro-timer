@@ -41,11 +41,11 @@ function App() {
       </div>
       <div className="flex justify-center relative">
             {showControls && (
-              <div className="absolute right-8">
+              <div className="absolute right-8 w-1/5 max-w-xl">
                 <TimerControls setWorkTime={setWorkTime} setBreakTime={setBreakTime} setGoal={setGoal}></TimerControls>
               </div>
             )}
-          <div className='bg-sage-200 rounded-4xl w-4/5 max-w-2xl aspect-[4/3] flex items-center justify-center shadow-md'>
+          <div className='bg-sage-200 rounded-4xl w-2/5 max-w-2xl aspect-[4/3] flex items-center justify-center shadow-md'>
             <div className='bg-sage-100 rounded-4xl w-4/5 max-w-xl aspect-[4/3] flex flex-col items-center justify-center shadow-md'>
               <ProgressIndicator completed={completed} goal={goal} />
               <TimerDisplay workTime={workTime} breakTime={breakTime} onComplete={handlePomodoroComplete} />
@@ -53,7 +53,9 @@ function App() {
           </div>
       </div>
       <PlantGrowth></PlantGrowth>
-      <TodoistTasks></TodoistTasks>
+      <div className='w-3/5 max-w-4xl mx-auto'>
+        <TodoistTasks></TodoistTasks>
+      </div>
     </div>
   )
 }
