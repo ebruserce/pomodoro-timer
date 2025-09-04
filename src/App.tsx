@@ -9,6 +9,8 @@ import { DEFAULT_BREAK_MINUTES, DEFAULT_GOAL, DEFAULT_WORK_MINUTES } from './con
 import PlantGrowth from './components/PlantGrowth'
 import TodoistTasks from './components/TodoistTasks'
 
+type Mode = "work" | "break"
+
 function App() {
   const [workTime, setWorkTime] = useState(DEFAULT_WORK_MINUTES * 60)
   const [breakTime, setBreakTime] = useState(DEFAULT_BREAK_MINUTES * 60)
@@ -16,6 +18,8 @@ function App() {
 
   const [completed, setCompleted] = useState(0)
   const [goal, setGoal] = useState(DEFAULT_GOAL)
+
+  const [mode, setMode] = useState<Mode>("work")
 
   const toggleControls = () => {
     setShowControls((prev) => !prev)
@@ -48,12 +52,12 @@ function App() {
           <div className='bg-sage-200 rounded-4xl w-2/5 max-w-2xl aspect-[4/3] flex items-center justify-center shadow-md'>
             <div className='bg-sage-100 rounded-4xl w-4/5 max-w-xl aspect-[4/3] flex flex-col items-center justify-center shadow-md'>
               <ProgressIndicator completed={completed} goal={goal} />
-              <TimerDisplay workTime={workTime} breakTime={breakTime} onComplete={handlePomodoroComplete} />
+              <TimerDisplay mode={mode} setMode={setMode} workTime={workTime} breakTime={breakTime} onComplete={handlePomodoroComplete} />
             </div>
           </div>
       </div>
       <PlantGrowth></PlantGrowth>
-      <div className='w-3/5 max-w-4xl mx-auto'>
+      <div className='w-2/5 max-w-4xl mx-auto'>
         <TodoistTasks></TodoistTasks>
       </div>
     </div>

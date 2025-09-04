@@ -46,47 +46,50 @@ export default function TimerControls({ setWorkTime, setBreakTime, setGoal }: Ti
 
     return (
         <div className="bg-sage-200 rounded-4xl flex flex-col shadow-md relative">
-            <div className="text-white font-sofia text-xl md:text-2xl lg:text-2xl p-4 flex justify-center">
+            <div className="text-white font-sofia text-l lg:text-xl flex justify-center mt-4">
                 Timer Settings
             </div>
+            <p className="text-white font-sofia text-sm lg:text-base flex justify-center">
+                (minutes)
+            </p>
             <div className="flex justify-between items-center p-4">
-                <p className="text-white font-sofia text-md md:text-xl lg:text-xl pr-4">
-                    Work Duartion: 
+                <p className="text-white font-sofia lg:text-xl pr-4">
+                    Work Time: 
                 </p>
                 <input
                     type="number"
                     value={inputWorkTime}
                     onChange={(evt) => setInputWorkTime(Number(evt.target.value))}
-                    className="bg-sage-100 rounded-4xl flex items-center justify-center font-sofia text-md md:text-xl lg:text-xl w-28 text-center text-green-fill"
+                    className="bg-sage-100 rounded-4xl flex items-center justify-center font-sofia lg:text-xl w-16 lg:w-20 text-center text-green-fill"
                 />
             </div>
             <div className="flex justify-between items-center p-4">
-                <p className="text-white font-sofia text-md md:text-xl lg:text-xl pr-4">
-                    Break Duartion: 
+                <p className="text-white font-sofia text-l lg:text-xl pr-4">
+                    Break Time: 
                 </p>
                 <input
                     type="number"
                     value={inputBreakTime}
                     onChange={(evt) => setInputBreakTime(Number(evt.target.value))}
-                    className="bg-sage-100 rounded-4xl flex items-center justify-center font-sofia text-md md:text-xl lg:text-xl w-28 text-center text-green-fill"
+                    className="bg-sage-100 rounded-4xl flex items-center justify-center font-sofia lg:text-xl w-16 lg:w-20 text-center text-green-fill"
                 />
             </div>
             <div className="flex justify-between items-center p-4">
-                <p className="text-white font-sofia text-md md:text-xl lg:text-xl pr-4">
-                    Goal Num. Of Pomodoros: 
+                <p className="text-white font-sofia text-l lg:text-xl">
+                    # of Sessions: 
                 </p>
                 <input
                     type="number"
                     value={inputGoal}
                     onChange={(evt) => setInputGoal(Number(evt.target.value))}
-                    className="bg-sage-100 rounded-4xl flex items-center justify-center font-sofia text-md md:text-xl lg:text-xl w-28 text-center text-green-fill"
+                    className="bg-sage-100 rounded-4xl flex items-center justify-center font-sofia lg:text-xl w-16 lg:w-20 text-center text-green-fill"
                 />
             </div>
-            <p className="text-white font-sofia text-md md:text-l lg:text-l p-4 flex justify-center">
+            <p className="text-white font-sofia text-sm lg:text-base p-4 flex justify-center">
                 {workDuration()}
             </p>
-            <div className="flex justify-center p-4">
-                <button onClick={handleSaveInput} className="bg-green-fill rounded-[43px] w-16 h-8 md:w-20 md:h-12 lg:w-20 lg:h-12 shadow-md flex justify-center items-center text-white font-sofia text-md md:text-l lg:text-l">
+            <div className="flex justify-center mb-4">
+                <button onClick={handleSaveInput} className="bg-green-fill rounded-[43px] w-16 h-8 lg:w-20 lg:h-10 shadow-md flex justify-center items-center text-white font-sofia text-sm lg:text-l">
                     Save
                 </button>
             </div>
